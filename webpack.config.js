@@ -65,6 +65,27 @@ module.exports = env => ({
           "postcss-loader",
           "less-loader"
         ]
+      },
+      {
+        test: /\.txt$/i,
+        use: "raw-loader"
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          // eslint options (if necessary)
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {}
+          }
+        ]
       }
     ]
   },
