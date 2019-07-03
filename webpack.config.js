@@ -51,6 +51,36 @@ module.exports = env => ({
       },
       { test: /\.txt$/, use: "raw-loader" },
       {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoader: 2
+            }
+          },
+          "less-loader"
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoader: 2
+            }
+          },
+          "sass-loader"
+        ]
+      },
+      {
         test: /\.css$/,
         use: [
           {
