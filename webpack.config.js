@@ -51,46 +51,19 @@ module.exports = env => ({
       },
       { test: /\.txt$/, use: "raw-loader" },
       {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoader: 2
-            }
-          },
-          "less-loader"
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoader: 2
-            }
-          },
-          "sass-loader"
-        ]
-      },
-      {
-        test: /\.css$/,
+        test: /\.(le|sa|sc|c)ss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: "../",
-              hmr: process.env.NODE_ENV === "development"
+              hmr: process.env.NODE_ENV === "development",
+              reloadAll: true
             }
           },
-          "css-loader"
+          "css-loader",
+          "postcss-loader",
+          "less-loader"
         ]
       }
     ]
