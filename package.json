@@ -36,6 +36,7 @@
         "css-loader": "^3.0.0",
         "cssnano": "^4.1.10",
         "directory-named-webpack-plugin": "^4.0.1",
+        "dotenv-webpack": "^1.7.0",
         "eslint": "^6.0.1",
         "eslint-config-prettier": "^6.0.0",
         "eslint-plugin-react": "^7.14.2",

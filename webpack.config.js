@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
@@ -132,6 +133,7 @@ module.exports = env => ({
         process.env.NODE_ENV === 'analyze'
             ? new BundleAnalyzerPlugin()
             : a => a,
+        new DotEnv(),
         new OfflinePlugin(),
     ],
 })
