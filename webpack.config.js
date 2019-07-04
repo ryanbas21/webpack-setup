@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const glob = require('glob')
 const path = require('path')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
@@ -8,6 +9,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+
+const PATHS = {
+    src: path.join(__dirname, 'src'),
+}
 
 module.exports = env => ({
     entry: './src/index.js',
@@ -31,6 +38,12 @@ module.exports = env => ({
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
@@ -113,8 +126,12 @@ module.exports = env => ({
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
+        new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+        }),
         process.env.NODE_ENV === 'analyze'
             ? new BundleAnalyzerPlugin()
             : a => a,
+        new OfflinePlugin(),
     ],
 })
