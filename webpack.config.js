@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const glob = require('glob')
+const ManifestPlugin = require('webpack-manifest-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -24,8 +25,9 @@ module.exports = env => ({
         filename: 'bundle.js',
     },
     devServer: {
-        contentBase: path.join(__dirname, 'static'),
+        contentBase: path.join(__dirname, '/'),
         publicPath: '/',
+        historyApiFallback: true,
         compress: true,
         open: true,
         overlay: true,
@@ -130,6 +132,7 @@ module.exports = env => ({
             ? new BundleAnalyzerPlugin()
             : a => a,
         new Dotenv(),
+        new ManifestPlugin(),
         new OfflinePlugin(),
     ],
 })
