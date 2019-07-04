@@ -1,6 +1,6 @@
 const webpack = require('webpack')
-const glob = require('glob')
 const path = require('path')
+const glob = require('glob')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -10,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 const PATHS = {
@@ -127,13 +126,10 @@ module.exports = env => ({
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
-        new PurgecssPlugin({
-            paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-        }),
         process.env.NODE_ENV === 'analyze'
             ? new BundleAnalyzerPlugin()
             : a => a,
-        new DotEnv(),
+        new Dotenv(),
         new OfflinePlugin(),
     ],
 })
