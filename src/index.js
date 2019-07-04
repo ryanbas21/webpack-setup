@@ -4,12 +4,13 @@ import { render } from "react-dom";
 const Home = React.lazy(() => import("./App"));
 const Second = React.lazy(() => import("./second"));
 
+/*eslint-disable*/
 if (module.hot) {
   module.hot.accept("./index.js", function() {
     console.log("Accepting the updated printMe module!");
   });
 }
-
+/*eslint-enable*/
 render(
   <Router>
     <React.Suspense fallback={<p>Loading...</p>}>
@@ -19,5 +20,5 @@ render(
       </Switch>
     </React.Suspense>
   </Router>,
-  document.getElementById("root")
+  document.getElementById("root") // eslint-disable-line
 );

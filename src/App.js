@@ -4,7 +4,7 @@ import * as R from "ramda";
 import "./App.css";
 import "./App.less";
 
-export default function(props) {
+export default function App() {
   const obj = { css: "css", less: "less" };
   return (
     <>

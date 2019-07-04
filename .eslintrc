@@ -1,0 +1,16 @@
+{
+    
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+    allowImportExportEverywhere: true,
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+      }
+    }
+  }

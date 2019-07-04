@@ -71,14 +71,6 @@ module.exports = env => ({
         use: "raw-loader"
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader",
-        options: {
-          // eslint options (if necessary)
-        }
-      },
-      {
         test: /\.(png|jpe?g|gif)$/,
         use: [
           {
