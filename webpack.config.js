@@ -1,11 +1,13 @@
 const webpack = require('webpack')
 const path = require('path')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
     .BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 
 module.exports = env => ({
     entry: './src/index.js',
@@ -37,6 +39,23 @@ module.exports = env => ({
             },
         },
     },
+    resolve: {
+        alias: {
+            src: path.resolve(__dirname, 'src/'),
+            components: path.resolve(__dirname, 'src/components/'),
+            features: path.resolve(__dirname, 'src/features/'),
+            utils: path.resolve(__dirname, 'src/utils'),
+        },
+        plugins: [
+            new DirectoryNamedWebpackPlugin({
+                exclude: /node_modules/,
+                include: [
+                    path.resolve('./src/components'),
+                    path.resolve('./src/features'),
+                ],
+            }),
+        ],
+    },
     mode:
         process.env.NODE_ENV === 'production'
             ? 'production'
@@ -61,7 +80,12 @@ module.exports = env => ({
                             reloadAll: true,
                         },
                     },
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        },
+                    },
                     'postcss-loader',
                     'less-loader',
                 ],
@@ -82,6 +106,7 @@ module.exports = env => ({
         ],
     },
     plugins: [
+        new DashboardPlugin(),
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({ template: './static/index.html' }),
         new MiniCssExtractPlugin({

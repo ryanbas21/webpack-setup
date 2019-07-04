@@ -4,12 +4,14 @@
     "plugins": ["react"],
     "parser": "babel-eslint",
     "parserOptions": {
-    allowImportExportEverywhere: true,
+    "allowImportExportEverywhere": true,
     "ecmaVersion": 6,
     "sourceType": "module",
-   "env": {
+    "env": {
       "es6": true,
-      "node": true
+      "node": true,
+      "amd": true,
+      "browser": true
     },
     "rules": {
       "prettier/prettier": "error"

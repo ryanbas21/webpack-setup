@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { render } from 'react-dom'
-const Home = React.lazy(() => import('./App'))
-const Second = React.lazy(() => import('./second'))
+const Home = React.lazy(() => import('features/App'))
+const Second = React.lazy(() => import('features/Second'))
 
 /*eslint-disable*/
 if (module.hot) {
@@ -11,14 +11,21 @@ if (module.hot) {
     })
 }
 /*eslint-enable*/
+
+function AppRouter(props) {
+    return (
+        <Router>
+            <React.Suspense fallback={<p>Loading...</p>}>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/second" component={Second} />
+                </Switch>
+            </React.Suspense>
+        </Router>
+    )
+}
+
 render(
-    <Router>
-        <React.Suspense fallback={<p>Loading...</p>}>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/second" component={Second} />
-            </Switch>
-        </React.Suspense>
-    </Router>,
+    <AppRouter />,
     document.getElementById('root') // eslint-disable-line
 )
