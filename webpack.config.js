@@ -83,7 +83,6 @@ module.exports = env => ({
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
             },
-            { test: /\.txt$/, use: 'raw-loader' },
             {
                 test: /\.(le|sa|sc|c)ss$/,
                 use: [
