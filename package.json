@@ -1,53 +1,68 @@
 {
-  "name": "webpack-setup",
-  "version": "1.0.0",
-  "description": "A repo setting up webpack 4 for code splitting",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production webpack",
-    "watch": "NODE_ENV=development webpack-dev-server --open",
-    "analyze": "NODE_ENV=analyze webpack"
-  },
-  "author": "Ryan Bas",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "autoprefixer": "^9.6.0",
-    "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.0.0",
-    "cssnano": "^4.1.10",
-    "eslint": "^6.0.1",
-    "eslint-plugin-react": "^7.14.2",
-    "file-loader": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "less": "^3.9.0",
-    "less-loader": "^5.0.0",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.6.0",
-    "raw-loader": "^3.0.0",
-    "style-loader": "^0.23.1",
-    "sugarss": "^2.0.0",
-    "terser-webpack-plugin": "^1.3.0",
-    "webpack": "^4.35.2",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
-  },
-  "dependencies": {
-    "ramda": "^0.26.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1"
-  }
+    "name": "webpack-setup",
+    "version": "1.0.0",
+    "description": "A repo setting up webpack 4 for code splitting",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "NODE_ENV=production webpack",
+        "watch": "NODE_ENV=development webpack-dev-server --open",
+        "analyze": "NODE_ENV=analyze webpack"
+    },
+    "author": "Ryan Bas",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/preset-env": "^7.4.5",
+        "@babel/preset-react": "^7.0.0",
+        "autoprefixer": "^9.6.0",
+        "babel-eslint": "^10.0.2",
+        "babel-loader": "^8.0.6",
+        "css-loader": "^3.0.0",
+        "cssnano": "^4.1.10",
+        "eslint": "^6.0.1",
+        "eslint-config-prettier": "^6.0.0",
+        "eslint-plugin-react": "^7.14.2",
+        "file-loader": "^4.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "husky": "^3.0.0",
+        "less": "^3.9.0",
+        "less-loader": "^5.0.0",
+        "lint-staged": "^9.0.2",
+        "mini-css-extract-plugin": "^0.7.0",
+        "node-sass": "^4.12.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "postcss-cssnext": "^3.1.0",
+        "postcss-import": "^12.0.1",
+        "postcss-loader": "^3.0.0",
+        "postcss-preset-env": "^6.6.0",
+        "prettier": "^1.18.2",
+        "raw-loader": "^3.0.0",
+        "style-loader": "^0.23.1",
+        "sugarss": "^2.0.0",
+        "terser-webpack-plugin": "^1.3.0",
+        "webpack": "^4.35.2",
+        "webpack-bundle-analyzer": "^3.3.2",
+        "webpack-cli": "^3.3.5",
+        "webpack-dev-server": "^3.7.2"
+    },
+    "dependencies": {
+        "ramda": "^0.26.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-router": "^5.0.1",
+        "react-router-dom": "^5.0.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,css,json,md}": [
+            "prettier --write",
+            "git add"
+        ]
+    }
 }
